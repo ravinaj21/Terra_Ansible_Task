@@ -1,0 +1,15 @@
+rg_name="terraform_East"
+location="Australia East"
+vnet_name="terraform_vnet"
+vnet_space=["10.0.0.0/16"]
+subnet_name="terraform_subnet"
+subnet_space=["10.0.2.0/24"]
+nic_name="terraform_nic"
+ip_name="terraform_ip"
+pip_name="terraform_pip"
+disk_name="terraform_disk1"
+disk_size="64"
+vm_name="terraform_vm"
+vm_size="Standard_B2ms"
+vm_user="terraform"
+vm_password="Terraform1234!"
