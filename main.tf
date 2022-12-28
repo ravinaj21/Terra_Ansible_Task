@@ -17,14 +17,7 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_space
   depends_on          = [azurerm_resource_group.rg]
-  delegation {
-    name = "delegation"
-
-    service_delegation {
-      name    = "Microsoft.ContainerInstance/containerGroups"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
-    }
-  }
+  
 }
 
 resource "azurerm_network_interface" "nic" {
