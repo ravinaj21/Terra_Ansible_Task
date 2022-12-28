@@ -1,4 +1,5 @@
 rg_name="terraform_East"
+network_security_name="terraform_nw"
 location="Australia East"
 vnet_name="terraform_vnet"
 vnet_space=["10.0.0.0/16"]
