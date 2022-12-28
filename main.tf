@@ -3,6 +3,29 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
+resource "azurerm_network_security_group" "rg" {
+  name                = var.network_security_name
+  location            = var.location
+  resource_group_name = var.rg_name
+
+  security_rule {
+    name                       = "SSH RULE"
+    priority                   = 300
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  depends_on = [
+    azurerm_resource_group.rg
+  ]
+}
+
+
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   address_space       = var.vnet_space
@@ -17,8 +40,8 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_space
   depends_on          = [azurerm_resource_group.rg]
-  
 }
+
 
 resource "azurerm_network_interface" "nic" {
   name                = var.nic_name
@@ -29,6 +52,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = var.ip_name
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.pip.id
   }
 }
 resource "azurerm_managed_disk" "disk" {
@@ -48,6 +72,11 @@ resource "azurerm_public_ip" "pip" {
    depends_on          = [azurerm_resource_group.rg]
  }
 
+resource "azurerm_network_interface_security_group_association" "rg" {
+  network_interface_id      = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.rg.id
+  depends_on          = [azurerm_resource_group.rg]
+}
 
 
 resource "azurerm_virtual_machine" "main" {
