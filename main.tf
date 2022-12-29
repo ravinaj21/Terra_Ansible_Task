@@ -71,6 +71,10 @@ resource "azurerm_public_ip" "pip" {
    allocation_method            = "Static"
    depends_on          = [azurerm_resource_group.rg]
  }
+data "azurerm_public_ip" "public_ip" {
+	name = azurerm_public_ip.pip.name
+	resource_group_name = azurerm_resource_group.rg.name
+}
 output "public_ip" {
     value = data.azurerm_public_ip.public_ip.ip_address
 }	
