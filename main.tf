@@ -72,7 +72,7 @@ resource "azurerm_public_ip" "pip" {
    depends_on          = [azurerm_resource_group.rg]
  }
 output "public_ip" {
-    value = data.azurerm_ip.public_ip.ip_address
+    value = azurerm_ip.public_ip.ip_address
 }	
 resource "azurerm_network_interface_security_group_association" "rg" {
   network_interface_id      = azurerm_network_interface.nic.id
