@@ -4,17 +4,11 @@
   become_user: root
   
   tasks:
-   - name: Upgrade all apt packages
-     apt: 
-       upgrade: dist
-       update_cache: true
-       force_apt_get: true
-      
    - name: install docker
      apt:
        name: docker.io
        state: latest
-       update_cache: true
+       
    - name: Start docker service
      service:
        name: docker
