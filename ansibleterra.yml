@@ -1,6 +1,7 @@
 - name: docker task
   hosts: all
   become: true
+  become_user: root
   
   tasks:
    - name: Upgrade all apt packages
@@ -8,7 +9,7 @@
       
    - name: install docker
      apt: 
-       package: docker-ce
+       package: docker.io
        state: latest
    - name: Start docker service
      service:
