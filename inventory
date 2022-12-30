@@ -1,1 +1,1 @@
-ansible_ssh_user="terraform" ansible_ssh_pass="terraform1234!" 
+ansible_ssh_user="terraform" ansible_ssh_pass="Terraform1234!" 
