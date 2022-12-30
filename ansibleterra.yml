@@ -1,5 +1,5 @@
 - name: docker task
-  hosts: all 
+  hosts: "{{host}}"
   become: true
   
   tasks:
