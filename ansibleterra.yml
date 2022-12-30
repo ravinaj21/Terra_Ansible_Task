@@ -7,8 +7,8 @@
    - name: Upgrade all apt packages
      apt: 
        upgrade: dist
-       update_cache: yes
-       dpkg_options: 'force-confold,force-confdef'
+       update_cache: true
+       force_apt_get: true
       
    - name: install docker
      apt:
