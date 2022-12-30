@@ -12,7 +12,7 @@
       
    - name: install docker
      apt:
-       name: docker-ce
+       name: docker.io
        state: latest
        update_cache: true
    - name: Start docker service
