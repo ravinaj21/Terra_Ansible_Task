@@ -12,30 +12,30 @@
         - curl
         - gnupg-agent
         - software-properties-common
-- name: fetching GPG keys
-      apt_key:
-        url: 'https://download.docker.com/linux/ubuntu/gpg'
-        state: present
-- name: adding docker repo
-      apt_repository:
-        repo: 'deb https://download.docker.com/linux/ubuntu bionic stable'
-        state: present
-- name: install docker
-      apt:
-        name: "{{item}}"
-        state: latest
-        update_cache: yes
-      loop:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-- name: enabling docker as a service
-      service:
-        name: docker
-        state: started
-        enabled: yes
+     - name: fetching GPG keys
+        apt_key:
+         url: 'https://download.docker.com/linux/ubuntu/gpg'
+         state: present
+     - name: adding docker repo
+        apt_repository:
+         repo: deb https://download.docker.com/linux/ubuntu bionic stable
+         state: present
+     - name: install docker
+        apt:
+         name: "{{item}}"
+         state: latest
+         update_cache: yes
+        loop:
+         - docker-ce
+         - docker-ce-cli
+         - containerd.io
+     - name: enabling docker as a service
+        service:
+          name: docker
+          state: started
+          enabled: yes
 handlers:
-    - name: restart docker
-      service: 
-        name: docker 
-        state: restarted
+  - name: restart docker
+    service: 
+      name: docker 
+      state: restarted
