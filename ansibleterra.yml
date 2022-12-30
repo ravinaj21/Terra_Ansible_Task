@@ -1,9 +1,9 @@
-- name: install docker
+- name: docker task
   hosts: all 
   become: true
   
   tasks:
     -name: install docker
      apt: 
-     package: docker.io
-     state: latest
+       package: docker.io
+       state: latest
