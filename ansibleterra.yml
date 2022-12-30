@@ -11,6 +11,7 @@
      apt:
        name: docker-ce
        state: latest
+       update_cache: true
    - name: Start docker service
      service:
        name: docker
