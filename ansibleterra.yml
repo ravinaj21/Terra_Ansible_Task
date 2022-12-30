@@ -5,5 +5,9 @@
   tasks:
    - name: install docker
      apt: 
-       package: docker.io
+       package: docker-ce
        state: latest
+   - name: Start docker service
+     service:
+       name: docker
+       state: started
